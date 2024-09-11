@@ -29,6 +29,8 @@ Membuat file README.md yang berisi tautan menuju aplikasi yang sudah di-deploy d
 
 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html!
 
+![Beige Colorful Minimal Flowchart Infographic Graph](https://github.com/user-attachments/assets/5c5376da-98b2-4f31-a3a5-e062c1002a50)
+
 Client melakukan request ->  urls.py (mencocokan URL) -> views.py (menjalankan logika aplikasi) -> models.py (mengambil data dari database) -> views.py (memproses data) -> Template (main.html) -> Respons kembali ke client.
 
 
