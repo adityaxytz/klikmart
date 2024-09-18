@@ -197,3 +197,13 @@ Langkah 3 : Membuat Routing URL untuk Setiap Views
 Langkah 4 : Testing dan Penyempurnaan
 - Testing
 - Penyempurnaan
+
+
+json by id
+![alt text](<Screenshot (339)-1.png>)
+xml by id
+![alt text](<Screenshot (338).png>)
+json
+![alt text](<Screenshot (337)-1.png>)
+xml
+![alt text](<Screenshot (336).png>)
