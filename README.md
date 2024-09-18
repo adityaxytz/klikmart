@@ -200,10 +200,10 @@ Langkah 4 : Testing dan Penyempurnaan
 
 
 json by id
-![alt text](<Screenshot (339)-1.png>)
+![alt text](<Screenshot (339).png>)
 xml by id
 ![alt text](<Screenshot (338).png>)
 json
-![alt text](<Screenshot (337)-1.png>)
+![alt text](<Screenshot (337).png>)
 xml
 ![alt text](<Screenshot (336).png>)
