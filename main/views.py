@@ -27,6 +27,7 @@ def create_product(request):
     context = {'form': form}
     return render(request, "create_product.html", context)
 
+#fungsi xml, json, xml by id, json by id
 def show_xml(request):
     data = Product.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
