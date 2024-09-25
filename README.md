@@ -1,5 +1,8 @@
 URL PWS : http://aditya-dharma31-klikmart.pbp.cs.ui.ac.id/
 
+
+Tugas 2 (Implementasi Model-View-Template (MVT) pada Django)
+
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
 - Membuat Sebuah Proyek Django Baru
@@ -97,6 +100,8 @@ Dengan demikian, model pada Django disebut sebagai ORM karena fitur ini memungki
 
 
 
+Tugas 3 (Implementasi Form dan Data Delivery pada Django)
+
 1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 
 Data delivery adalah proses pengiriman data yang efektif dan efisien dalam pengimplementasian sebuah platform. Berikut beberapa alasan mengapa data delivery diperlukan:
@@ -182,6 +187,7 @@ Dengan demikian, menambahkan csrf_token pada form Django adalah sangat penting u
 
 
 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
 Langkah 1 : Membuat Input Form untuk Menambahkan Objek Model
 - Menentukan Model
 - Membuat Form untuk Model
@@ -207,3 +213,122 @@ json
 ![alt text](<Screenshot (337).png>)
 xml
 ![alt text](<Screenshot (336).png>)
+
+
+
+
+
+Tugas 4 (Implementasi Autentikasi, Session, dan Cookies pada Django)
+
+1. Apa perbedaan antara HttpResponseRedirect() dan redirect()
+
+HttpResponseRedirect() dan redirect() adalah dua cara untuk melakukan pengalihan (redirect) dalam framework Django, tetapi mereka memiliki perbedaan mendasar dalam penggunaannya.
+
+- HttpResponseRedirect()
+HttpResponseRedirect() adalah kelas yang secara langsung mengembalikan respons HTTP dengan kode status 302 (Found) dan URL tujuan. Ini memerlukan URL yang sudah ditentukan dan biasanya digunakan dalam konteks di mana Anda ingin mengarahkan pengguna ke URL tertentu setelah melakukan aksi tertentu, seperti setelah menyimpan data. 
+
+- redirect()
+Di sisi lain, redirect() adalah fungsi shortcut yang disediakan oleh Django untuk menyederhanakan proses pengalihan. Fungsi ini juga mengembalikan respons HTTP dengan kode status 302, tetapi lebih fleksibel dalam hal parameter yang diterima. Anda dapat menggunakan nama view, URL langsung, atau bahkan objek model sebagai argumen.
+
+Ringkasan perbedaan
+Fitur = Tipe pengembalian
+HttpResponseRedirect() = Kelas respons HTTP
+redirect() = Fungsi shortcut
+
+Fitur = Parameter
+HttpResponseRedirect() = Memerlukan URL atau hasil dari reverse()
+redirect() = Dapat menerima nama view, URL, atau objek model
+
+Fitur = Kemudahan penggunaan
+HttpResponseRedirect() = Lebih verbose dan memerlukan langkah tambahan
+redirect() = Lebih ringkas dan mudah digunakan
+
+Secara umum, penggunaan redirect() lebih disarankan untuk kemudahan dan kejelasan kode, sedangkan HttpResponseRedirect() mungkin berguna dalam situasi tertentu di mana kontrol lebih besar atas respons diperlukan.
+
+
+
+2. Jelaskan cara kerja penghubungan model Product dengan User!
+
+Penghubungan model Product dengan User dalam Django dapat dilakukan menggunakan relasi antar model. Berikut adalah cara kerja penghubungan tersebut :
+
+- Menggunakan ForeignKey
+Untuk menghubungkan model Product dengan User, Anda dapat menggunakan ForeignKey. ForeignKey digunakan untuk menunjukkan bahwa satu model memiliki referensi ke model lain. Dalam kasus ini, Anda ingin menunjukkan bahwa setiap produk memiliki pengguna yang menggunakannya.
+- Membuat dan Menggunakan Form
+Untuk menambahkan produk baru dan menghubungkannya dengan pengguna, Anda dapat membuat form yang memvalidasi input pengguna dan menyimpan data ke dalam database.
+- Mengakses Data
+Untuk mengakses data produk yang dimiliki oleh pengguna, Anda dapat menggunakan fungsi filter pada model Product.
+
+
+
+3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+
+Authentication dan authorization adalah dua konsep penting dalam keamanan aplikasi yang sering digunakan secara bersamaan tetapi memiliki fungsi yang berbeda.
+
+Authentication adalah proses untuk memverifikasi identitas pengguna. Ini melibatkan pemeriksaan kredensial seperti username dan password untuk memastikan bahwa pengguna adalah siapa yang mereka klaim. Contohnya, saat Anda login ke akun email, Anda memasukkan username dan password untuk membuktikan identitas Anda.
+
+Authorization, di sisi lain, adalah proses yang menentukan izin atau hak akses pengguna setelah mereka berhasil diautentikasi. Ini mengatur apa yang dapat dilakukan pengguna dalam sistem, seperti mengakses data tertentu atau menjalankan fungsi tertentu. Misalnya, setelah login, sistem akan memeriksa apakah Anda memiliki hak untuk mengakses pengaturan akun atau tidak.
+
+Authentication di Django
+Untuk melakukan autentikasi, Django menggunakan modul django.contrib.auth. Anda dapat menggunakan fungsi authenticate() untuk memverifikasi kredensial pengguna.
+
+Authorization di Django
+Untuk otorisasi, Django memungkinkan Anda untuk menetapkan izin dan grup kepada pengguna. Anda dapat menggunakan decorators seperti @login_required untuk membatasi akses ke view tertentu hanya untuk pengguna yang telah terautentikasi. Selain itu, Django juga mendukung sistem perizinan berbasis peran (RBAC) melalui model permission dan group. Anda dapat menetapkan izin khusus pada objek tertentu sehingga hanya pengguna dengan izin tersebut yang dapat mengakses atau memodifikasi objek tersebut.
+
+Dengan demikian, Django menyediakan alat dan mekanisme yang kuat untuk mengimplementasikan authentication dan authorization secara efektif dalam aplikasi web Anda.
+
+
+
+4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+
+Django mengingat pengguna yang telah login dengan menggunakan session dan cookies. Berikut adalah penjelasan mengenai cara kerjanya, kegunaan lain dari cookies, serta keamanan penggunaan cookies.
+
+Cara Kerja Django dalam Mengingat Pengguna yang Login
+- Session Management
+Setelah pengguna berhasil melakukan login, Django membuat sesi untuk pengguna tersebut. Sesi ini berfungsi untuk menyimpan informasi tentang pengguna selama mereka berinteraksi dengan aplikasi. Django menggunakan session ID yang disimpan dalam cookies di sisi klien. Setiap kali pengguna melakukan permintaan ke server, session ID ini dikirimkan untuk mengidentifikasi sesi pengguna.
+- Cookies
+Cookies adalah potongan data kecil yang disimpan di browser pengguna. Ketika pengguna login, Django dapat menyimpan session ID dalam cookie. Cookie ini akan dikirimkan ke server pada setiap permintaan berikutnya, memungkinkan Django untuk mengaitkan permintaan tersebut dengan sesi yang tepat.
+
+Kegunaan Lain dari Cookies
+Cookies tidak hanya digunakan untuk menyimpan session ID. Beberapa kegunaan lain dari cookies meliputi:
+- Menyimpan Preferensi Pengguna
+Cookies dapat menyimpan preferensi pengguna seperti bahasa atau tema yang dipilih.
+- Pelacakan Aktivitas
+Cookies digunakan untuk melacak aktivitas pengguna di situs web, seperti halaman yang dikunjungi dan waktu yang dihabiskan di setiap halaman.
+- Meningkatkan Pengalaman Pengguna
+Dengan menyimpan informasi seperti keranjang belanja atau item favorit, cookies memungkinkan pengalaman pengguna yang lebih personal.
+
+Apakah Semua Cookies Aman Digunakan?
+Tidak semua cookies aman. Beberapa risiko terkait penggunaan cookies meliputi:
+- Cross-site Scripting (XSS)
+Penyerang dapat mencuri cookies melalui serangan XSS dan menggunakan informasi tersebut untuk mengambil alih sesi pengguna.
+- Session Hijacking
+Jika cookies tidak dilindungi dengan baik, penyerang dapat menggunakan cookies yang dicuri untuk mengakses akun pengguna.
+- Cookie Spoofing
+Penyerang dapat mencoba memalsukan atau mengganti cookie untuk mendapatkan akses tidak sah ke aplikasi.
+- Cross-Site Request Forgery (CSRF)
+Cookies dapat digunakan dalam serangan CSRF di mana penyerang memanipulasi pengguna untuk melakukan tindakan yang tidak diinginkan.
+
+Langkah-langkah Keamanan Cookies
+Untuk meningkatkan keamanan penggunaan cookies, beberapa langkah yang bisa diambil termasuk:
+- Menggunakan atribut HttpOnly dan Secure pada cookie untuk mencegah akses melalui JavaScript dan memastikan cookie hanya dikirim melalui koneksi HTTPS.
+- Mengimplementasikan mekanisme validasi untuk memastikan bahwa cookie berasal dari sumber yang sah.
+- Mengatur waktu kedaluwarsa pada cookie agar tidak berlaku selamanya.
+
+Dengan demikian, meskipun cookies sangat berguna dalam pengelolaan sesi dan pengalaman pengguna, penting untuk menerapkan praktik keamanan yang baik agar data pengguna tetap aman.
+
+
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+Pertama, kita membuat Fungsi dan forum registrasi. Mengimpor UsercreationForm dan message dari django.contrib.auth ,dimana fungsi dari usercreationform adalah untuk memudahkan pembuatan formulir pendaftaran user dalam aplikasi web. Kemudian kita menambahkan fungsi registrasi, dimana fungsi ini berfungsi untuk menghasilkan formulir registrasi dan menghasilkan akun pengguna ketika di submit. Setelah itu kita membuat berkas HTML baru yang menyajikan halaman pendaftaran untuk pengguna baru. Formulir ini mengumpulkan data pendaftaran dan mengirimkannya ke server dengan aman. Melalui sistem pesan, pengguna dapat menerima umpan balik tentang status pendaftaran. kemudian kita mengimpor fungsi registrasi di views.py dan menambahkan path url kedalam urlpatterns.
+
+Kedua, membuat fungsi Login, dengan menambahkan beberapa impor seperti authenticate, login, dan AuthenticationForm. Fungsi tersebut digunakan untuk melakukan autentikasi dan login. Kemudian kita menambah sebuah fungsi login_user di views.py dimana fungsi ini digunakan untuk melakukan login terlebih dahulu. apabila user valid, maka fungsi ini akan embaut session untuk pengguna yang berhasil login. Kemudian kita juga membuat file baru dengan nama login.html , template yang disediakan berguna untuk pengguna agar dapat masuk ke aplikasi dan menawarkan opsi untuk mendaftar jika mereka belum memiliki akun.
+
+Ketiga, Merestriksi Akses halaman main dengan menambahkan import login_required yang berfungsi untuk mengimpor sebuah decorator yang bisa mengharuskan pengguna masuk(login) terlebih dahulu sbeleum mengakses sebuah halaman web. Kemudian, menambahkan @login_required(login_url='/login') agar halaman main hanya dapat diakses oleh pengguna yang sudah login, kemudian kita menjalankan projek django dan membuka http://localhost:8000/.
+
+Keempat, Menggunakan data dari cookies dengan menambahkan data las login dan menampilkannya dihalaman main, lalu membuka file views.py dan mengimpor beberapa fungsi seperti import HttpResponseRedirect, reverse, dan datetime. kemudian kita menambahkan fungsionalitas cookie yang bernama last_login untuk melihat kapan terakhir kali pengguna melakukan login. Kemudian pada fungsi show_main kita tambahkan 'last_login':request.COOKIES['last_login'], yang berfungsi untuk menambahkan informasi cookie last_login pada response yang akan ditampilkan dihalaman web. Kemudian kita ubah fungsi logout_user  menjadi response.delete_cookie('last_login'), yang berfungsi untuk menghapus cookie last_login saat pengguna menekan logout. Kemudian kita menambahkan pesan yang akan ditampilkan di halaman utama yaitu sesi terakhir login, lalu jalankan projek django.
+
+Kelima, keterangan untuk melihat cookie pada projek saya adalah saya membuka protocol localhost di chrome dan kemudian saya klik kanan pada halaman web saya, lalu saya memilih inspect dan tanda disamping Memory (>>) lalu memilih Application dan melihat cookie nya.
+
+Keenam, Menghubungkan moodentry dengan user, dengan menambahkan import pada models.py (from django.contrib.auth.models import User)
+dan menambahkan variabel dengan nama "user" yang berisi kode untuk menghubungkan satu product entry dengan satu user melalui sebauh relationship, dimana product entry pasti terasosialisasikan dengan seorang user. lalu menambahkan beberapa kepingan kode pada file views.py dengan parameter commit=false, bergna untuk mencegah django agar tidak langsung menyimpan objek yang telah dibuat dari form langsung ke database. kemudian kita mengubah value dari product_entries dan context, gunanya kita ubah yaitu untuk menampilkan objek product__entry yang terasosiasikan dengan menyaring seluruh objek. dan kode request.user,username berfungsi untuk menampilakn username pengguna yang login. Kemudian simpan semua perubahan dan lakukan imigrasi, dan setelah itu akan ada eror yang muncul dan kita memilih angka 1 untuk menetapkan default value untuk field user pada semua row yang telah dibuat. Kemudian kita mengimoport os dan mengganti variabel DEBUG dengan kode yang telah disediakan.
