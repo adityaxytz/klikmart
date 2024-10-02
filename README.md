@@ -332,3 +332,136 @@ Kelima, keterangan untuk melihat cookie pada projek saya adalah saya membuka pro
 
 Keenam, Menghubungkan moodentry dengan user, dengan menambahkan import pada models.py (from django.contrib.auth.models import User)
 dan menambahkan variabel dengan nama "user" yang berisi kode untuk menghubungkan satu product entry dengan satu user melalui sebauh relationship, dimana product entry pasti terasosialisasikan dengan seorang user. lalu menambahkan beberapa kepingan kode pada file views.py dengan parameter commit=false, bergna untuk mencegah django agar tidak langsung menyimpan objek yang telah dibuat dari form langsung ke database. kemudian kita mengubah value dari product_entries dan context, gunanya kita ubah yaitu untuk menampilkan objek product__entry yang terasosiasikan dengan menyaring seluruh objek. dan kode request.user,username berfungsi untuk menampilakn username pengguna yang login. Kemudian simpan semua perubahan dan lakukan imigrasi, dan setelah itu akan ada eror yang muncul dan kita memilih angka 1 untuk menetapkan default value untuk field user pada semua row yang telah dibuat. Kemudian kita mengimoport os dan mengganti variabel DEBUG dengan kode yang telah disediakan.
+
+
+
+
+
+Tugas 5 (Desain Web menggunakan HTML, CSS dan Framework CSS)
+
+1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+
+Jika terdapat beberapa CSS selector untuk suatu elemen HTML, urutan prioritas pengambilan CSS selector tersebut diatur berdasarkan ke-spesifik-an (specificity) selector. Berikut adalah urutan prioritas dari yang paling spesifik hingga yang paling tidak spesifik:
+
+- Inline Style
+Inline style memiliki prioritas tertinggi karena ditulis langsung pada elemen HTML. Contoh: 'style="color:red;" pada tag <p style="color:red;">'.
+- Internal Style
+Internal style memiliki prioritas setelah inline style dan sebelum eksternal style. Contoh: '<style type="text/css"> p { color:red; } </style>'.
+- Eksternal Style
+Eksternal style memiliki prioritas setelah internal style. Contoh: '<link rel="stylesheet" type="text/css" href="styles.css">'.
+- Selector Prioritas
+    - ID Selector: #id memiliki prioritas tertinggi di antara jenis selector lainnya. Contoh: '#aaa { color:orange; }'
+    - Class Selector: .class memiliki prioritas lebih tinggi daripada tag selector. Contoh: '.kalimat { color:silver; }'
+    - Tag Selector: tag memiliki prioritas paling rendah di antara jenis selector lainnya. Contoh: 'p { color:red; }'
+
+CSS Specificity dihitung menggunakan formula 4 digit, dimana:
+- Setiap element/tag selector bernilai 0,0,0,1.
+- Setiap class selector, attribut selector bernilai 0,0,1,0.
+- Setiap ID selector bernilai 0,1,0,0.
+- Setiap inline style bernilai 1,0,0,014.
+
+Dengan demikian, jika terdapat beberapa selector yang saling menimpa, selector yang paling spesifik akan menang.
+
+
+
+2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+
+Responsive design menjadi konsep yang sangat penting dalam pengembangan aplikasi web karena beberapa alasan utama:
+
+- Pengalaman Pengguna yang Konsisten
+Dengan responsive design, situs web dapat menyesuaikan tampilan dan fungsionalitasnya sesuai dengan berbagai ukuran layar, mulai dari desktop hingga smartphone. Ini memastikan bahwa pengguna mendapatkan pengalaman yang konsisten dan memuaskan, tanpa perlu melakukan zoom atau scrolling berlebihan untuk membaca konten.
+- Aksesibilitas yang Lebih Baik
+Desain responsif membuat konten lebih mudah diakses di berbagai perangkat, meningkatkan keterbacaan dan navigasi. Hal ini sangat penting dalam era di mana penggunaan perangkat mobile semakin meningkat.
+- SEO yang Lebih Baik
+Mesin pencari seperti Google lebih suka situs web yang responsif karena mereka memberikan pengalaman pengguna yang lebih baik. Situs yang responsif cenderung memiliki peringkat lebih tinggi dalam hasil pencarian, sehingga meningkatkan visibilitas.
+- Efisiensi Biaya dan Waktu
+Mengembangkan satu versi situs web yang responsif lebih efisien dibandingkan membuat versi terpisah untuk desktop dan mobile. Ini menghemat waktu dalam pemeliharaan dan pembaruan.
+
+Contoh Aplikasi yang Sudah Menerapkan Responsive Design
+- Airbnb
+Platform ini menggunakan responsive design untuk memberikan pengalaman pencarian dan pemesanan akomodasi yang nyaman di berbagai perangkat. Mereka menerapkan teknik seperti media queries dan pengoptimalan gambar untuk memastikan tampilan yang baik di semua ukuran layar.
+- The Guardian
+Situs berita ini juga menerapkan desain responsif, memungkinkan pengguna untuk membaca artikel dengan nyaman baik di desktop maupun perangkat mobile. Penggunaan CSS Flexbox dan media queries membantu mereka mencapai tujuan ini.
+- GitHub
+Platform ini dirancang responsif untuk memudahkan akses dan keterbacaan kode serta proyek di berbagai perangkat, menjadikannya sangat berguna bagi pengembang.
+
+Contoh Aplikasi yang Belum Menerapkan Responsive Design
+- Situs Web Tua atau Tidak Terawat
+Banyak situs web lama atau tidak terawat masih menggunakan desain statis yang tidak responsif, sehingga tampilan mereka tidak optimal pada perangkat mobile. Contoh umum termasuk beberapa situs berita lokal atau bisnis kecil yang belum memperbarui desain mereka.
+- Situs E-Commerce Kecil
+Beberapa situs e-commerce kecil mungkin belum menerapkan responsive design, menyebabkan kesulitan bagi pengguna mobile dalam menavigasi produk dan melakukan pembelian.
+
+Implementasi responsive design sangat penting untuk memastikan bahwa aplikasi web dapat berfungsi dengan baik di berbagai perangkat dan memberikan pengalaman pengguna yang optimal.
+
+
+
+3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+
+Perbedaan antara margin, border, dan padding dalam CSS sangat penting untuk memahami tata letak dan desain elemen pada halaman web. Berikut penjelasan mengenai ketiga konsep tersebut serta cara mengimplementasikannya.
+
+Perbedaan Margin, Border, dan Padding
+- Margin
+Definisi: Margin adalah ruang di luar batas (border) elemen. Ini berfungsi untuk mengatur jarak antara elemen satu dengan yang lainnya.
+Fungsi: Margin digunakan untuk memisahkan elemen dari elemen lain di sekitarnya.
+Dampak pada Layout: Menambahkan margin akan mempengaruhi posisi elemen dalam tata letak, membuatnya lebih jauh dari elemen lain.
+
+- Border
+Definisi: Border adalah garis yang mengelilingi elemen. Border dapat memiliki ketebalan, gaya, dan warna yang berbeda.
+Fungsi: Border memberikan batas visual pada elemen, membedakannya dari elemen lain.
+Dampak pada Layout: Penambahan border akan menambah ukuran total elemen karena border dihitung dalam dimensi elemen.
+
+- Padding
+Definisi: Padding adalah ruang di dalam batas (border) elemen, antara konten dan border itu sendiri.
+Fungsi: Padding memberikan ruang tambahan di sekitar konten dalam elemen, sehingga konten tidak terlalu dekat dengan batas.
+Dampak pada Layout: Menambahkan padding akan meningkatkan ukuran total elemen karena padding juga dihitung dalam dimensi elemen.
+
+Cara Mengimplementasikan
+Untuk mengimplementasikan margin, border, dan padding pada elemen HTML, Anda dapat menggunakan CSS dengan cara berikut:
+
+- Tentukan elemen HTML yang ingin dimodifikasi (misalnya <div>).
+- Buka berkas CSS yang terkait dengan halaman web Anda.
+- Gunakan selector untuk memilih elemen tersebut dan tambahkan properti CSS sesuai kebutuhan.
+
+Dengan memahami perbedaan antara margin, border, dan padding serta cara implementasinya, Anda dapat mengatur tata letak dan desain halaman web dengan lebih efektif.
+
+
+
+4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+
+Konsep Flexbox dan Grid Layout adalah dua metode utama dalam CSS untuk mengatur tata letak elemen pada halaman web. Keduanya memiliki kegunaan yang berbeda dan dirancang untuk memenuhi kebutuhan desain yang spesifik.
+
+Flexbox
+Flexbox, atau Flexible Box Layout, adalah model layout satu dimensi yang memungkinkan pengaturan elemen dalam baris atau kolom. Dengan menggunakan flexbox, elemen dapat diperluas untuk mengisi ruang tambahan atau menyusut untuk sesuai dengan ruang yang lebih kecil.
+
+Kegunaan
+- Pengaturan Elemen Sederhana
+Flexbox sangat berguna untuk pengaturan elemen yang hanya memerlukan satu dimensi (misalnya, baris atau kolom) tanpa perlu mengkhawatirkan posisi elemen lain.
+- Penyelarasan dan Distribusi Ruang
+Memudahkan penyelarasan vertikal dan horizontal dari item di dalam kontainer, serta distribusi ruang di antara item.
+- Responsivitas
+Sangat efektif dalam membuat desain responsif yang dapat menyesuaikan dengan ukuran layar yang berbeda tanpa memerlukan banyak CSS tambahan.
+
+Grid Layout
+CSS Grid Layout adalah model layout dua dimensi yang memungkinkan pengaturan elemen dalam baris dan kolom secara bersamaan. Dengan grid, Anda dapat mendefinisikan area grid dan menempatkan item di dalamnya dengan kontrol yang lebih besar.
+
+Kegunaan
+- Tata Letak Kompleks
+Grid sangat cocok untuk membuat tata letak yang lebih kompleks, seperti desain majalah atau dashboard, di mana elemen perlu ditempatkan secara spesifik dalam grid.
+- Pengaturan Responsif
+Grid memungkinkan pengaturan responsif yang lebih canggih dengan kemampuan untuk mengubah jumlah kolom dan baris berdasarkan ukuran layar.
+- Penempatan Elemen
+Anda dapat menentukan area tertentu untuk elemen tertentu menggunakan properti grid, sehingga memberikan kontrol penuh atas tata letak.
+
+Dengan memahami konsep dan kegunaan Flexbox serta Grid Layout, pengembang dapat memilih metode yang paling sesuai untuk kebutuhan tata letak aplikasi web mereka.
+
+
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+- Menambahkan tailwind ke aplikasi melalui templates/base.html menggunakan <script src="https://cdn.tailwindcss.com">.
+- Menambahkan fitur edit product pada aplikasi melalui main.html, views.py, urls.py, dan edit_product.html.
+- Menambahkan fitur hapus product pada aplikasi melalui views.py, urls.py, dan main.html.
+- Menambahkan navigation bar pada aplikasi melalui navbar.html.
+- Menautkan navigation bar ke dalam main.html, create_product.html, dan edit_product.html.
+- Melakukan konfigurasi static files pada aplikasi melalui settings.py.
+- Menambahkan styles pada aplikasi dengan tailwind dan external css.
