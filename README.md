@@ -330,7 +330,7 @@ Keempat, Menggunakan data dari cookies dengan menambahkan data las login dan men
 
 Kelima, keterangan untuk melihat cookie pada projek saya adalah saya membuka protocol localhost di chrome dan kemudian saya klik kanan pada halaman web saya, lalu saya memilih inspect dan tanda disamping Memory (>>) lalu memilih Application dan melihat cookie nya.
 
-Keenam, Menghubungkan moodentry dengan user, dengan menambahkan import pada models.py (from django.contrib.auth.models import User)
+Keenam, Menghubungkan product dengan user, dengan menambahkan import pada models.py (from django.contrib.auth.models import User)
 dan menambahkan variabel dengan nama "user" yang berisi kode untuk menghubungkan satu product entry dengan satu user melalui sebauh relationship, dimana product entry pasti terasosialisasikan dengan seorang user. lalu menambahkan beberapa kepingan kode pada file views.py dengan parameter commit=false, bergna untuk mencegah django agar tidak langsung menyimpan objek yang telah dibuat dari form langsung ke database. kemudian kita mengubah value dari product_entries dan context, gunanya kita ubah yaitu untuk menampilkan objek product__entry yang terasosiasikan dengan menyaring seluruh objek. dan kode request.user,username berfungsi untuk menampilakn username pengguna yang login. Kemudian simpan semua perubahan dan lakukan imigrasi, dan setelah itu akan ada eror yang muncul dan kita memilih angka 1 untuk menetapkan default value untuk field user pada semua row yang telah dibuat. Kemudian kita mengimoport os dan mengganti variabel DEBUG dengan kode yang telah disediakan.
 
 
@@ -465,3 +465,110 @@ Dengan memahami konsep dan kegunaan Flexbox serta Grid Layout, pengembang dapat 
 - Menautkan navigation bar ke dalam main.html, create_product.html, dan edit_product.html.
 - Melakukan konfigurasi static files pada aplikasi melalui settings.py.
 - Menambahkan styles pada aplikasi dengan tailwind dan external css.
+
+
+
+
+
+Tugas 6 (JavaScript dan AJAX)
+
+1. Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+
+JavaScript adalah bahasa pemrograman yang sangat powerful dan serbaguna, dan memiliki beberapa manfaat signifikan dalam pengembangan aplikasi web. Berikut beberapa manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web:
+
+- Membuat website lebih interaktif dan dinamis.
+- Mengatur fungsi dan fitur website.
+- Memanipulasi halaman web.
+- Membangun aplikasi web yang kompleks.
+- Membuat animasi dan efek visual.
+- Memiliki beban kerja server yang lebih efisien.
+
+Dengan demikian, JavaScript menjadi alat yang sangat penting dalam pengembangan aplikasi web, memungkinkan pengembang untuk menciptakan aplikasi yang interaktif, dinamis, dan efisien.
+
+
+
+2. Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+
+Penggunaan await ketika menggunakan fetch() dalam JavaScript memiliki beberapa fungsi dan kelebihan yang signifikan. Berikut fungsi dari penggunaan await ketika kita menggunakan fetch():
+
+- Menunggu respon
+Await memungkinkan JavaScript untuk menunggu sampai promise yang dikembalikan oleh fetch() selesai sebelum melanjutkan eksekusi kode. Ini berarti bahwa kode akan "dipause" pada baris yang menggunakan await hingga promise tersebut selesai.
+- Error handling
+Await memungkinkan penggunaan blok try/catch untuk menangani error yang mungkin terjadi selama proses fetch atau parsing data. Ini membuat kode lebih mudah dibaca dan lebih terstruktur dalam menangani error.
+
+Hal yang terjadi jika tidak menggunakan await
+
+- Kode asinkron tanpa await
+Jika Anda tidak menggunakan await, Anda harus menggunakan metode then() dan catch() untuk menangani promise. Ini bisa membuat kode menjadi lebih kompleks dan sulit dibaca, terutama ketika ada banyak operasi asinkron yang saling bergantung.
+
+Kelemahan Tanpa Await
+
+- Tanpa await, kode tidak akan menunggu sampai operasi asinkron selesai sebelum melanjutkan ke langkah berikutnya. Ini bisa menyebabkan masalah jika kode berikutnya bergantung pada hasil dari operasi asinkron sebelumnya.
+- Error handling juga menjadi lebih kompleks karena harus menggunakan catch() pada setiap tahap promise chaining, yang bisa membuat kode lebih sulit dibaca dan dijaga.
+
+Dalam keseluruhan, menggunakan await dengan fetch() membuat kode lebih linier, mudah dibaca, dan lebih terstruktur, terutama dalam menangani operasi asinkron dan error handling.
+
+
+
+3. Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+
+Kita perlu menggunakan dekorator csrf_exempt pada view yang akan digunakan untuk AJAX POST karena beberapa alasan terkait dengan proteksi Cross-Site Request Forgery (CSRF) dalam Django:
+
+- Menghindari kesalahan CSRF
+Django memiliki mekanisme proteksi CSRF yang wajib diaktifkan untuk menjaga integritas permintaan HTTP. Namun, saat menggunakan AJAX, kita sering kali tidak memiliki kontrol langsung atas pembuatan permintaan HTTP, sehingga potensial adanya kesalahan CSRF yang tidak sengaja dilakukan oleh pengguna. Dekorator csrf_exempt memungkinkan Anda untuk menghapus perlindungan CSRF dari suatu view tertentu.
+
+Dengan demikian, penggunaan dekorator csrf_exempt dapat membantu menghindari kesalahan CSRF saat menggunakan view AJAX.
+
+
+
+4. Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+
+Pembersihan data input pengguna dilakukan di backend karena beberapa alasan penting yang mempengaruhi keamanan, konsistensi, dan efektivitas proses pembersihan data. Berikut adalah beberapa alasan mengapa pembersihan data tidak hanya dilakukan di frontend saja:
+
+Keamanan
+- Preventasi inject script
+Backend memungkinkan implementasi yang lebih kuat untuk mencegah inject script atau XSS (Cross Site Scripting) yang dapat merugikan pengguna. Frontend sendiri kurang fleksibel dalam menerapkan kebijakan keamanan yang kompleks.
+- Authenticity tokens:
+Backend dapat dengan mudah mengintegrasikan tokens autentikasi seperti CSRF (Cross-Site Request Forgery) tokens untuk memastikan bahwa permintaan datang dari sumber yang sah dan bukan dari serangan phishing.
+
+Konsistensi format data
+- Standarisasi input
+Backend dapat memastikan bahwa input data selalu dalam format yang konsisten dan sesuai dengan spesifikasi yang ditentukan. Ini sangat penting untuk menghindari kesalahan interpretasi data yang dapat menyebabkan bug atau gangguan fungsional.
+- Validasi regularexpression
+Backend dapat menggunakan regularexpression yang lebih kompleks untuk memvalidasi input user, seperti pattern telepon, alamat email, dll., yang sulit dilakukan secara optimal di frontend.
+
+Integrasi dengan sistem database
+- Komunikasi dengan DBMS
+Backend berinteraksi langsung dengan sistem basis data, memungkinkan penggunaan query SQL yang kompleks untuk mengidentifikasi dan menghapus data duplikat, memperbaiki kesalahan format, dan melakukan validasi data yang lebih teliti.
+- Otomatisasi proses pembersihan
+Backend dapat dioptimalkan untuk menjalankan skrip SQL yang rutin untuk membersihkan data secara periodik, seperti menghapus log kadaluarsa atau memperbarui indeks tabel.
+
+Skalabilitas dan performa
+- Load balancing & caching
+Backend dapat diintegrasikan dengan load balancing dan caching system untuk meningkatkan performa aplikasi dan mengurangi beban CPU saat melakukan operasi pembersihan data.
+- Scalability
+Desain backend yang modular memungkinkan skalabilitas yang lebih baik, sehingga aplikasi dapat menangani volume traffic yang lebih besar tanpa kehilangan kinerja.
+
+Transparency dan auditibilitas
+- Logging transaksi
+Backend memungkinkan logging transaksi yang lebih detail, sehingga dapat dipantau dan dievaluasi aktivitas pembersihan data secara lebih transparan dan auditable.
+- Monitoring performance
+Tools monitoring performance di backend memungkinkan pengawasan kinerja aplikasi secara real-time, membantu dalam diagnosis masalah dan optimasi proses pembersihan data.
+
+Dengan demikian, melakukan pembersihan data di backend memberikan banyak keuntungan yang tidak dapat dicapai dengan hanya melakukan di frontend saja. Ini termasuk meningkatkan keamanan, konsistensi format data, integrasi dengan sistem database, skalabilitas, dan transparency serta auditibilitas proses pembersihan data.
+
+
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+AJAX GET
+- Menambahkan block kode product card ke dalam fungsi asinkron refreshProducts() di main.html.
+- Menambahkan fungsi refreshProduct() yang akan memanggil fungsi asinkron lain, yaitu getProduct().
+
+AJAX POST
+- Menambahkan tombol form di bawah tombol yang mengarah ke halaman create-product.
+- Menambahkan fungsi showModal(), hideModal(), serta event listener-nya di bagian <script>.
+- Membuat fungsi view baru untuk menambahkan produk ke database dengan menggunakan csrf_exempt dan require_POST di views.py.
+- Menambahkan path di urls.py yang mengarah ke fungsi add_product_ajax() dengan cara mengimport fungsi tersebut dan menambahkannya ke urlpatterns.
+- Menyambungkan form di modal dengan path add_product_ajax dengan menambahkan fungsi addProduct() dan event listener di bagian <script> pada main.html.
+- Menambahkan fungsi asinkron getProducts() dan refreshProducts() di bagian <script>.
